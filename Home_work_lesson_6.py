@@ -15,7 +15,7 @@ for element in my_list:
 my_results = []
 my_list = [1, 2, 235, 100, 101, 1234]
 for el in my_list:
-     if int(el) > 100:
+     if el > 100:
          my_results.append(el)
 print(my_results)
 ##################################################################################
