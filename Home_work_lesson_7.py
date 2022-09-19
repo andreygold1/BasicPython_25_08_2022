@@ -29,10 +29,10 @@ print(count)
 my_list1 = [1, 2.3, 5, 'a', 9]
 my_list2 = [5, 'q', 'w', 'e', 'r', 't', 'y']
 my_result = []
-for _ in my_list1[::2]:
-    my_result.append(_)
-for _ in my_list2[1::2]:
-    my_result.append(_)
+for index in my_list1[::2]:
+    my_result.append(index)
+for index in my_list2[1::2]:
+    my_result.append(index)
 print(my_result)
 
 ############################################################################################################
@@ -42,9 +42,7 @@ print(my_result)
 
 my_list = [1,2,3,4,6,56,0]
 new_list = []
-for element in my_list[1:]:
-    new_list.append(element)
-new_list.append(my_list.pop(0))
+new_list.extend(my_list[1:] + (my_list[:1]))
 print(new_list)
 
 #############################################################################################################
@@ -66,9 +64,9 @@ print(my_list, id(my_list))
 my_str = "43 больше чем 34 но меньше чем 56"
 new_str = my_str.split()
 chislo = 0
-for index in range(len(new_str)):
-    if new_str[index].isdigit():
-        chislo += int(new_str[index])
+for element in new_str:
+    if element.isdigit():
+        chislo += int(element)
 print(chislo)
 
 #############################################################################################################
@@ -108,9 +106,9 @@ print(result)
 # Для списка [2,4,1,5,3,9,0,7] ответом будет 3 потому что 4 > 2+1, 5 > 1+3, 9>3+0.
 # _____________________________________________________________________________________________________________
 
-my_list = [2,4,1,5,3,9,0,7]
+my_list = [0,2,4,1,5,3,9,0,7,6]
 count = 0
-for index in range(len(my_list[:-1])):
+for index in range(1, len(my_list)-1):
     if (my_list[index] > (my_list[index-1] + my_list[index+1])):
         count += 1
 print(count)
@@ -121,11 +119,11 @@ print(count)
 # Создать новый список в который поместить только строки из my_list.
 # _____________________________________________________________________________________________________________
 
-my_list = [1, 2, 3, "11", "22", 33]
+my_list = [1, 2, 3, "11", "22", "33"]
 new_list = []
-for index in range(len(my_list)):
-    if type(my_list[index]) == str:
-        new_list.append(my_list[index])
+for element in my_list:
+    if type(element) == str:
+        new_list.append(element)
 print(new_list)
 
 ###############################################################################################################
@@ -133,8 +131,11 @@ print(new_list)
 # которые встречаются в строке ТОЛЬКО ОДИН раз.
 # _____________________________________________________________________________________________________________
 
-my_str = '433qwertyte'
-new_list = list(set(my_str))
+my_str = 'qwertyqwer'
+new_list = []
+for element in my_str:
+    if my_str.count(element) == 1:
+        new_list.append(element)
 print(new_list)
 
 ###############################################################################################################
@@ -142,9 +143,13 @@ print(new_list)
 # которые есть в обеих строках хотя бы раз.
 # _____________________________________________________________________________________________________________
 
-my_str_1 = '433qwerty'
-my_str_2 = '12qwbv'
-new_list = list(set(my_str_1 + my_str_2))
+my_str_1 = '433qwerty+'
+my_str_2 = '12qwerty'
+new_str = my_str_1 + my_str_2
+new_list = []
+for element in new_str:
+    if new_str.count(element) == 1:
+         new_list.append(element)
 print(new_list)
 
 ###############################################################################################################
@@ -153,9 +158,10 @@ print(new_list)
 # Пример: для строк "aaaasdf1" и "asdfff2" ответ ["s", "d"], т.к. эти символы есть в каждой строке по одному разу
 # ________________________________________________________________________________________________________________
 
-my_str_1 = '433qwetyt'
-my_str_2 = '123qwbvt'
-new_str_1 = set(my_str_1)
-new_str_2 = set(my_str_2)
-my_list = list(new_str_1.intersection(new_str_2))
-print(my_list)
+str_1 = "aaaasdf1"
+str_2 = "asdfff2"
+result = []
+for element in str_1:
+    if str_1.count(element) == 1 and str_2.count(element) == 1:
+        result.append(element)
+print(result)
