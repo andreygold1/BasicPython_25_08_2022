@@ -133,7 +133,7 @@ print(new_list)
 
 my_str = 'qwertyqwer'
 new_list = []
-for element in my_str:
+for element in set(my_str):
     if my_str.count(element) == 1:
         new_list.append(element)
 print(new_list)
@@ -143,13 +143,12 @@ print(new_list)
 # которые есть в обеих строках хотя бы раз.
 # _____________________________________________________________________________________________________________
 
-my_str_1 = '433qwerty+'
-my_str_2 = '12qwerty'
-new_str = my_str_1 + my_str_2
+str_1 = '433qwerty+'
+str_2 = '12qwerty'
+new_set = set(str_1).intersection(set(str_2))
 new_list = []
-for element in new_str:
-    if new_str.count(element) == 1:
-         new_list.append(element)
+for element in new_set:
+    new_list.append(element)
 print(new_list)
 
 ###############################################################################################################
@@ -161,7 +160,8 @@ print(new_list)
 str_1 = "aaaasdf1"
 str_2 = "asdfff2"
 result = []
-for element in str_1:
+# new_set = set(str_1).intersection(set(str_2))
+for element in set(str_1).intersection(set(str_2)):
     if str_1.count(element) == 1 and str_2.count(element) == 1:
         result.append(element)
 print(result)
