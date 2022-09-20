@@ -145,9 +145,8 @@ print(new_list)
 
 str_1 = '433qwerty+'
 str_2 = '12qwerty'
-new_set = set(str_1).intersection(set(str_2))
 new_list = []
-for element in new_set:
+for element in set(str_1).intersection(set(str_2)):
     new_list.append(element)
 print(new_list)
 
@@ -160,7 +159,6 @@ print(new_list)
 str_1 = "aaaasdf1"
 str_2 = "asdfff2"
 result = []
-# new_set = set(str_1).intersection(set(str_2))
 for element in set(str_1).intersection(set(str_2)):
     if str_1.count(element) == 1 and str_2.count(element) == 1:
         result.append(element)
