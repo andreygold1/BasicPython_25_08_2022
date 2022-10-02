@@ -1,5 +1,5 @@
 1	Smith	English	188,840
-2	Garcia	Spanish	173,892
+2	Garcia  Spanish	173,892
 3	Martinez	Spanish	146,931
 4	Williams	English, Welsh	146,796
 5	Johnson	English	145,330
@@ -14,9 +14,9 @@
 14	Perez	Spanish	74,777
 15	Flores	Spanish	70,232
 16	Gonzales	Spanish	69,800
-17	Ramirez	Spanish	68,769
-18	Jackson	English	68,534
-19	Moore	Irish	67,615
+17	Ramirez Spanish	68,769
+18	Jackson English	68,534
+19	Moore   Irish	67,615
 20	Wilson	English, Scottish	65,691
 21	Sanchez	Spanish	65,641
 22	Taylor	English	64,681
