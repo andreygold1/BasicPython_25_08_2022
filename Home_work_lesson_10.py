@@ -73,8 +73,8 @@ import re
 def read_file_4(filename):
     with open(filename, 'r') as file:
         result = []
-        dict_date = {}
         for line in file.readlines():
+            dict_date = {}
             if len(line.split()) > 1:
                 temp_date = line.split('-')[0]
                 if len(temp_date.split()) == 3:
@@ -87,7 +87,6 @@ def read_file_4(filename):
                     dict_date['date_original'] = temp_date
                     dict_date['date_modified'] = date_modified
                     result.append(dict_date)
-                    print(result)
         return result
 
 def monthToNum(Month):
