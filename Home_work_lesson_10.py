@@ -1,23 +1,19 @@
 # Все пункты сделать как отдельные функции и их вызовы.
 
-import re
-
-
-
 # 1. Написать функцию, которая получает в виде параметра имя файла названия интернет доменов (domains.txt)
 # и возвращает их в виде списка строк (названия возвращать без точки).
 # __________________________________________________________________________________________________________
 
-# def read_file_1(filename):
-#     with open(filename, 'r') as file:
-#         list_domains = file.read()
-#         domains = list_domains.replace(".", "")
-#     return domains
-#
-#
-# my_file_1 = "domains.txt"
-# new_domains = read_file_1(my_file_1)
-# print(new_domains)
+def read_file_1(filename):
+    with open(filename, 'r') as file:
+        list_domains = file.read()
+        domains = list_domains.replace(".", "")
+    return domains
+
+
+my_file_1 = "domains.txt"
+new_domains = read_file_1(my_file_1)
+print(new_domains)
 
 
 ###########################################################################################################
@@ -27,15 +23,15 @@ import re
 # Разделитель - символ табуляции "\t"
 # __________________________________________________________________________________________________________
 
-# def read_file_2(filename):
-#     with open(filename, 'r') as file1:
-#         surnames = '\t'.join([line.split()[1] for line in file1.readlines()])
-#     return surnames
-#
-#
-# my_file_2 = "names.txt"
-# list_surnames = read_file_2(my_file_2)
-# print(list_surnames)
+def read_file_2(filename):
+    with open(filename, 'r') as file1:
+        surnames = '\t'.join([line.split('\t')[1] for line in file1.readlines()])
+    return surnames
+
+
+my_file_2 = "names.txt"
+list_surnames = read_file_2(my_file_2)
+print(list_surnames)
 
 
 ###########################################################################################################
@@ -45,20 +41,20 @@ import re
 # Например [{"date": "1st January 1919"}, {"date": "8th February 1828"},  ...]
 # __________________________________________________________________________________________________________
 
-# def read_file_3(filename):
-#     result = []
-#     dict_date = {}
-#     with open(filename, 'r') as file:
-#         for line in file.readlines():
-#             if len(line.split()) > 1:
-#                 dict_date['date'] = line.split('-')[0]
-#                 result.append(dict_date)
-#      return result
-#
-#
-# my_file_3 = 'authors.txt'
-# dates = read_file_3(my_file_3)
-# print(dates)
+def read_file_3(filename):
+    result = []
+    with open(filename, 'r') as file:
+        for line in file.readlines():
+            dict_date = {}
+            if len(line.split()) > 1:
+                dict_date['date'] = line.split('-')[0]
+                result.append(dict_date)
+        return result
+
+
+my_file_3 = 'authors.txt'
+dates = read_file_3(my_file_3)
+print(dates)
 
 ###########################################################################################################
 # По просьбам некоторых студентов начну включать дополнительные задания.
@@ -75,13 +71,14 @@ def read_file_4(filename):
         result = []
         for line in file.readlines():
             dict_date = {}
+            new_date = []
             if len(line.split()) > 1:
                 temp_date = line.split('-')[0]
                 if len(temp_date.split()) == 3:
                     dd, mm, year = temp_date.split()
-                    new_date = re.findall("\d+", dd)
-                    new_mm = monthToNum(mm)
-                    new_date.append(new_mm)
+                    new_dd = str(dd[0:-2]).zfill(2)
+                    new_date.append(new_dd)
+                    new_date.append(monthToNum(mm))
                     new_date.append(year)
                     date_modified = '/'.join(new_date)
                     dict_date['date_original'] = temp_date
