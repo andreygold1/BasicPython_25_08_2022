@@ -76,8 +76,7 @@ def read_file_4(filename):
                 temp_date = line.split('-')[0]
                 if len(temp_date.split()) == 3:
                     dd, mm, year = temp_date.split()
-                    new_dd = str(dd[0:-2]).zfill(2)
-                    new_date.append(new_dd)
+                    new_date.append(str(dd[0:-2]).zfill(2))
                     new_date.append(monthToNum(mm))
                     new_date.append(year)
                     date_modified = '/'.join(new_date)
