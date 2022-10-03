@@ -73,19 +73,21 @@ from datetime import datetime
 def read_file_4(filename):
     with open(filename, 'r') as file:
         result = []
+        new_date = []
         dict_date = {}
         for line in file.readlines():
             if len(line.split()) > 1:
                 temp_date = line.split('-')[0]
-                dict_date['date_original'] = temp_date
-                dd, mm, year = temp_date.split()
-                new_date = re.findall("\d+", dd)
-                new_mm = monthToNum(mm)
-                new_date.append(new_mm)
-                new_date.append(year)
-                date_modified = '/'.join(new_date)
-                dict_date['date_modified'] = date_modified
-                result.append(dict_date)
+                if len(temp_date) == 3:
+                    dict_date['date_original'] = temp_date
+                    dd, mm, year = temp_date.split()
+                    new_date += re.findall("\d+", dd)
+                    new_mm = monthToNum(mm)
+                    new_date.append(new_mm)
+                    new_date.append(year)
+                    date_modified = '/'.join(new_date)
+                    dict_date['date_modified'] = date_modified
+                    result.append(dict_date)
             # print(result)
         return result
 
