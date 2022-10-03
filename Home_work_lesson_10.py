@@ -1,7 +1,7 @@
 # Все пункты сделать как отдельные функции и их вызовы.
 
 import re
-from datetime import datetime
+
 
 
 # 1. Написать функцию, которая получает в виде параметра имя файла названия интернет доменов (domains.txt)
@@ -12,7 +12,7 @@ from datetime import datetime
 #     with open(filename, 'r') as file:
 #         list_domains = file.read()
 #         domains = list_domains.replace(".", "")
-#         return domains
+#     return domains
 #
 #
 # my_file_1 = "domains.txt"
@@ -53,7 +53,7 @@ from datetime import datetime
 #             if len(line.split()) > 1:
 #                 dict_date['date'] = line.split('-')[0]
 #                 result.append(dict_date)
-#         return result
+#      return result
 #
 #
 # my_file_3 = 'authors.txt'
@@ -73,24 +73,22 @@ from datetime import datetime
 def read_file_4(filename):
     with open(filename, 'r') as file:
         result = []
-        new_date = []
         dict_date = {}
         for line in file.readlines():
             if len(line.split()) > 1:
                 temp_date = line.split('-')[0]
-                if len(temp_date) == 3:
-                    dict_date['date_original'] = temp_date
+                if len(temp_date.split()) == 3:
                     dd, mm, year = temp_date.split()
-                    new_date += re.findall("\d+", dd)
+                    new_date = re.findall("\d+", dd)
                     new_mm = monthToNum(mm)
                     new_date.append(new_mm)
                     new_date.append(year)
                     date_modified = '/'.join(new_date)
+                    dict_date['date_original'] = temp_date
                     dict_date['date_modified'] = date_modified
                     result.append(dict_date)
-            # print(result)
+                    print(result)
         return result
-
 
 def monthToNum(Month):
     return {
@@ -110,5 +108,5 @@ def monthToNum(Month):
 
 
 my_file_4 = 'authors.txt'
-list_date_original = read_file_4(my_file_4)
-print(list_date_original)
+list_date = read_file_4(my_file_4)
+print(list_date)
