@@ -67,10 +67,10 @@ def generate_and_write_file(filename):
         if name_file[-1] == '.json':
             json.dump(random_dict(), file_3, indent=2)
         elif name_file[-1] == '.txt':
-            file_3.write("".join(generate_string()))
+            file_3.write(generate_string())
         else:
             print("Unsupported file format")
 
-path = Path("C:\\", "Users", "Андрей", "Documents","lesson_11_4.json")
+path = Path("C:\\", "Users", "Андрей", "Documents","lesson_11_4.txt")
 file_write = generate_and_write_file(path)
 
