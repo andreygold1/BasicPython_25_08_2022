@@ -15,7 +15,7 @@ def generate_string():
 
 def generate_txt_data(filename):
     with open(filename, 'w') as file_1:
-        file_1.write("".join(generate_string()))
+        file_1.write(generate_string())
 
 my_file = 'txt_data.txt'
 file_txt = generate_txt_data(my_file)
