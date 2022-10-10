@@ -32,12 +32,6 @@ def choice_action(args):
     elif args['value_1'] == 'AVAILABLE' and args['value_2'] == '':
         info_system = read_json(filename='state_system.json')
         print("USD", info_system["USD"], "UAH", info_system["UAH"])
-    elif args['value_1'] == 'BUY' and args['value_2'] == 'ALL':
-        info_system = read_json(filename='state_system.json')
-        summa_usd = info_system["UAH"] / info_system['course']
-        info_system['USD'] = round(info_system['USD'] + summa_usd, 2)
-        info_system['UAH'] = info_system['UAH'] - info_system['UAH']
-        write_json(filename1='state_system.json', filename2=info_system)
     elif args['value_1'] == 'BUY' and args['value_2'] != 'ALL':
         try:
             value_2_float = float(args['value_2'])
@@ -47,15 +41,21 @@ def choice_action(args):
                 print('UNAVAILABLE, REQUIRED BALANCE UAH ' + str(need_uah) + ', ' + 'AVAILABLE ' + str(
                     info_system['UAH']))
             else:
-                info_system['UAH'] = round(info_system['UAH'] - need_uah, 2)
-                info_system["USD"] = round(info_system["USD"] + value_2_float, 2)
+                info_system['UAH'] = info_system['UAH'] - need_uah
+                info_system["USD"] = info_system["USD"] + value_2_float
                 write_json(filename1='state_system.json', filename2=info_system)
         except ValueError:
             pass
+    elif args['value_1'] == 'BUY' and args['value_2'] == 'ALL':
+        info_system = read_json(filename='state_system.json')
+        summa_usd = info_system["UAH"] / info_system['course']
+        info_system['USD'] = round(info_system['USD'] + summa_usd, 2)
+        info_system['UAH'] = info_system['UAH'] - info_system['UAH']
+        write_json(filename1='state_system.json', filename2=info_system)
     elif args['value_1'] == 'SELL' and args['value_2'] == 'ALL':
         info_system = read_json(filename='state_system.json')
-        summa_uah = info_system['USD'] * info_system['course']
-        info_system['UAH'] = round(info_system['UAH'] + summa_uah, 2)
+        summa_uah = round(info_system['USD'] * info_system['course'], 2)
+        info_system['UAH'] = info_system['UAH'] + summa_uah
         info_system['USD'] = info_system['USD'] - info_system['USD']
         write_json(filename1='state_system.json', filename2=info_system)
     elif args['value_1'] == 'SELL' and args['value_2'] != 'ALL':
