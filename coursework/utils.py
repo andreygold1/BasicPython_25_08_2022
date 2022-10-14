@@ -28,9 +28,9 @@ def change_cource(data):
 
 def buy_all(data):
     summa_usd = make_rounding(data["UAH"] / data['course'])
-    if summa_usd > 0:
+    if summa_usd > 0.1:
         data['USD'] = data['USD'] + summa_usd
-        data['UAH'] = round(data['UAH'] - data['USD'] * data['course'], 2)
+        data['UAH'] = round(data['UAH'] - summa_usd * data['course'], 2)
         return data
     else:
         print('Недостаточно средств для покупки валюты')
@@ -38,7 +38,6 @@ def buy_all(data):
 
 def sell_all(data):
     summa_uah = data['USD'] * data['course']
-    print(summa_uah)
     data['UAH'] = data['UAH'] + round(summa_uah, 2)
     data['USD'] = data['USD'] - data['USD']
 
@@ -71,10 +70,7 @@ def sell_parts(data, value):
         print("Ошибка ввода суммы продажи")
 
 def make_rounding(value):
-    print(value)
     temp_value = math.floor(value * 100)
-    print(temp_value)
-    print(temp_value / 100)
     return temp_value / 100
 
 def read_txt(filename):
@@ -109,7 +105,7 @@ def choice_action(args):
     elif args['value_1'] == 'RESTART' and args['value_2'] == '':
         make_restart()
     else:
-        print("Недопустимая команда! Укажите одну из команд\n")
+        print("Недопустимая команда! Укажите одну из команд")
         read_txt('action_guide.txt')
 
 
