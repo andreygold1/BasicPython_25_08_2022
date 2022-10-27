@@ -74,3 +74,5 @@ def generate_and_write_file(filename):
 path = Path("C:\\", "Users", "Андрей", "Documents","lesson_11_4.txt")
 file_write = generate_and_write_file(path)
 
+
+
