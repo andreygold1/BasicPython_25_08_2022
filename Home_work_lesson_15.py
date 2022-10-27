@@ -62,3 +62,4 @@ class Quotes:
     def save_quotes(self):
         with open(self.filename, "w") as file_json:
             json.dump(sorted(self.quotes_1, key=sort_by_surname), file_json)
+
